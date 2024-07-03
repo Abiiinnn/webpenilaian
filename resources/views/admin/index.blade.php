@@ -23,14 +23,14 @@
         <tbody>
             @foreach ($kelas as $kls)
                 <tr>
-                    <td>{{ $kls->id }}</td>
+                    <td>{{ $kls->id_kelas }}</td>
                     <td>{{ $kls->nama_kelas }}</td>
                     <td>{{ $kls->wali_kelas }}</td>
                     <td>{{ $kls->jumlah_siswa }}</td>
                     <td>{{ $kls->tingkat_kelas }}</td>
                     <td>
-                        <a href="{{ route('kelas.edit', $kls->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('kelas.delete', $kls->id) }}" method="POST" style="display:inline-block;">
+                        <a href="{{ route('kelas.edit', $kls->id_kelas) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('kelas.delete', $kls->id_kelas) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

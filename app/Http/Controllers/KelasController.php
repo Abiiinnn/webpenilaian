@@ -1,16 +1,16 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
+use App\Models\Murid;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class KelasController extends Controller
 {
- 
     public function index()
     {
-        $kelas = Kelas::all();
-        return view('admin.index', compact('kelas'));
+        $murid = Murid::all();
+        return view('admin.kelas.index', compact('murid'));
     }
 
     public function create()
@@ -18,42 +18,46 @@ class AdminController extends Controller
         return view('admin.create');
     }
 
+
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kelas' => 'required|string|max:255',
-            'wali_kelas' => 'nullable|string|max:255',
-            'jumlah_siswa' => 'required|integer',
-            'tingkat_kelas' => 'required|string|max:10',
+            'nama' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'nama_orang_tua' => 'required|string|max:255',
+            'kota_lahir' => 'required|string|max:225',
+            'tanggal_lahir' => 'required|string|max:225',
         ]);
 
-        Kelas::create($request->all());
+        Murid::create($request->all());
         return redirect()->route('layouts')->with('success', 'Kelas berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
-        $kelas = Kelas::findOrFail($id);
+        $murid = Murid::findOrFail($id);
         return view('admin.edit', compact('kelas'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_kelas' => 'required|string',
-            'wali_kelas' => 'required|string',
-            'jumlah_siswa' => 'required|numeric',
-            'tingkat_kelas' => 'required|string',
+            'nama' => 'required|string',
+            'alamat' => 'required|string',
+            'nama_orang_tua' => 'required|string',
+            'kota_lahir' => 'required|string',
+            'tanggal_lahir' => 'required|string',
         ]);
 
         try {
-            $kelas = Kelas::find($id);
-            if ($kelas) {
-                $kelas->nama_kelas = $request->nama_kelas;
-                $kelas->wali_kelas = $request->wali_kelas;
-                $kelas->jumlah_siswa = $request->jumlah_siswa;
-                $kelas->tingkat_kelas = $request->tingkat_kelas;
-                $kelas->save();
+            $murid = Murid::find($id);
+            if ($murid) {
+                $murid->nama = $request->nama;
+                $murid->alamat = $request->alamat;
+                $murid->nama_orang_tua = $request->nama_orang_tua;
+                $murid->kota_lahir = $request->kota_lahir;
+                $murid->tanggal_lahir = $request->tanggal_lahir;
+                $murid->save();
 
                 return redirect()->route('layouts')->with('success', 'Kelas has been updated successfully.');
             }
@@ -62,12 +66,13 @@ class AdminController extends Controller
             return redirect('kelas.edit'.$id)->with('fail', $e->getMessage());
         }
     }
+
     public function delete($id)
     {
         try {
-            $kelas = Kelas::find($id);
-            if ($kelas) {
-                $kelas->delete();
+            $murid = Murid::find($id);
+            if ($$murid) {
+                $$murid->delete();
                 return redirect()->route('layouts')->with('success', 'Kelas berhasil dihapus.');
             }
             return redirect()->route('layouts')->with('fail', 'Kelas tidak ditemukan.');
@@ -75,4 +80,5 @@ class AdminController extends Controller
             return redirect()->route('layouts')->with('fail', $e->getMessage());
         }
     }
+    
 }

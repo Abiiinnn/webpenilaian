@@ -1,5 +1,8 @@
+@extends('layouts.app')
+
+@section('content')
 <h1>Edit Kelas</h1>
-    <form action="{{ route('kelas.update', $kelas->id) }}" method="POST">
+    <form action="{{ route('admin.update', $kelas->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">

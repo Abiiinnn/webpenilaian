@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,13 +12,27 @@ route::post('/',[LoginController::class, 'login']);
 Route::get('/home',function(){
     return redirect('/admin');
 });
+
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/layouts', [AdminController::class, 'index'])->name('layouts'); // List classes
-    Route::post('/store', [AdminController::class, 'store'])->name('kelas.store'); // Create class
-    Route::get('/create', [AdminController::class, 'create'])->name('kelas.create'); // Create form
-    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('kelas.edit'); // Edit form
-    Route::put('/update/{id}', [AdminController::class, 'update'])->name('kelas.update'); // Update class
-    Route::delete('/delete/{id}', [AdminController::class, 'destroy'])->name('kelas.delete'); // Delete class
+    Route::post('/store', [AdminController::class, 'store'])->name('admin.store'); // Create class
+    Route::get('/create', [AdminController::class, 'create'])->name('admin.create'); // Create form
+    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit'); // Edit form
+    Route::put('/update/{id}', [AdminController::class, 'update'])->name('admin.update'); // Update class
+    Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete'); // Delete class
+    
+
+});
+
+Route::group(['prefix' => 'kelas'], function () {
+
+    Route::get('/admin/kelas', [KelasController::class, 'index'])->name('kelas.index');
+    Route::get('/admin/kelas/create', [KelasController::class, 'create'])->name('   kelas.create');
+    Route::post('/admin/kelas', [KelasController::class, 'store'])->name('kelas.store');
+    Route::get('/admin/kelas/{id}/edit', [KelasController::class, 'edit'])->name('kelas.edit');
+    Route::put('/admin/kelas/{id}', [KelasController::class, 'update'])->name('kelas.update');
+    Route::delete('/admin/kelas/{id}', [KelasController::class, 'delete'])->name('kelas.delete');
+    Route::get('/admin/kelas/{id}', [KelasController::class, 'view'])->name('kelas.view');
 });
 
 

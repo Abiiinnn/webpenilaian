@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('murid', function (Blueprint $table) {
-            $table->id();
+            $table->id() -> primary();
             $table->string('nama');
             $table->string('alamat');
             $table->string('nama_orang_tua');
             $table->string('kota_lahir'); 
-            $table->date('tanggal_lahir');
+            $table->string('tanggal_lahir');
             $table->unsignedBigInteger('kelas_id'); 
-            $table->timestamps();
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

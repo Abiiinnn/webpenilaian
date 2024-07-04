@@ -35,7 +35,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                         </form>
-                        <a href="{{ route('kelas.index', $kls->id) }}" class="btn btn-info btn-sm">Lihat Kelas</a>
+                        <a href="{{ route('kelas.view', $kls->id) }}" class="btn btn-info btn-sm">Lihat Kelas</a>
                     </td>
                 </tr>
             @endforeach

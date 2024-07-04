@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class kelas extends Model
 {
     use HasFactory;
+    
 
     protected $fillable = [
         'nama_kelas',
@@ -15,4 +16,10 @@ class kelas extends Model
         'jumlah_siswa',
         'tingkat_kelas',
     ];
+    
+    public function murids()
+{
+    return $this->hasMany(Murid::class);
+}
+
 }

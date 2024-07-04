@@ -20,19 +20,16 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit'); // Edit form
     Route::put('/update/{id}', [AdminController::class, 'update'])->name('admin.update'); // Update class
     Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete'); // Delete class
-    
-
+    Route::get('/admin/kelas/{id}', [KelasController::class, 'viewClass'])->name('kelas.view');
 });
 
 Route::group(['prefix' => 'kelas'], function () {
-
-    Route::get('/admin/kelas', [KelasController::class, 'index'])->name('kelas.index');
-    Route::get('/admin/kelas/create', [KelasController::class, 'create'])->name('   kelas.create');
+    Route::get('/admin/kelas/{id}/create', [KelasController::class, 'createStudent'])->name('murid.create');
     Route::post('/admin/kelas', [KelasController::class, 'store'])->name('kelas.store');
     Route::get('/admin/kelas/{id}/edit', [KelasController::class, 'edit'])->name('kelas.edit');
     Route::put('/admin/kelas/{id}', [KelasController::class, 'update'])->name('kelas.update');
     Route::delete('/admin/kelas/{id}', [KelasController::class, 'delete'])->name('kelas.delete');
-    Route::get('/admin/kelas/{id}', [KelasController::class, 'view'])->name('kelas.view');
+    // Route::get('/admin/kelas/{id}', [KelasController::class, 'view'])->name('kelas.view');
 });
 
 

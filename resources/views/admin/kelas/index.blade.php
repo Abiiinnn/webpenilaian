@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h1>Daftar Kelas</h1>
-    <a href="{{ route('kelas.create') }}" class="btn btn-primary">Tambah Kelas</a>
+    <h1>Daftar Siswa untuk Kelas {{ $kelas->nama_kelas }}</h1>
+    <a href="{{ route('murid.create', $kelas->id) }}" class="btn btn-primary">Tambah Siswa</a>
     @if (session('success'))
         <div class="alert alert-success mt-3">
             {{ session('success') }}
@@ -29,7 +29,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                         </form>
-                        <a href="{{ route('kelas.view', $mrd->id) }}" class="btn btn-info btn-sm">Lihat Kelas</a>
+                        <a href="{{ route('kelas.view', $mrd->id) }}" class="btn btn-info btn-sm">Lihat Siswa</a>
                     </td>
                 </tr>
             @endforeach

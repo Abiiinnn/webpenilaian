@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Murid;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,23 @@ class KelasController extends Controller
         return view('admin.kelas.index', compact('murid'));
     }
 
-    public function create()
+    // public function create()
+    // {
+    //     return view('admin.kelas.create');
+    // }
+    
+    public function show($id)
+{
+    $kelas = Kelas::findOrFail($id);
+    $murids = $kelas->murids; // pastikan 'murids' adalah nama relasi yang sesuai di model Kelas
+
+    return view('kelas.show', compact('kelas', 'murids'));
+}
+
+    public function createStudent($id)
     {
-        return view('admin.create');
+        $kelas = Kelas::findOrFail($id);
+        return view('admin.kelas.create', compact('kelas')); // View to create a new student within a class
     }
 
 
@@ -26,11 +41,12 @@ class KelasController extends Controller
             'alamat' => 'required|string|max:255',
             'nama_orang_tua' => 'required|string|max:255',
             'kota_lahir' => 'required|string|max:225',
-            'tanggal_lahir' => 'required|string|max:225',
+            'tanggal_lahir' => 'required|string',
+            'kelas_id' => 'required|exists:kelas,id',
         ]);
 
         Murid::create($request->all());
-        return redirect()->route('layouts')->with('success', 'Kelas berhasil ditambahkan.');
+        return redirect()->route('kelas.index')->with('success', 'Murid berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -65,6 +81,13 @@ class KelasController extends Controller
         } catch (\Exception $e) {
             return redirect('kelas.edit'.$id)->with('fail', $e->getMessage());
         }
+    }
+    
+    public function viewClass($id)
+    {
+        $kelas = Kelas::findOrFail($id);
+        $murid = Murid::where('kelas_id', $id)->get();
+        return view('admin.kelas.index', compact('kelas', 'murid'));
     }
 
     public function delete($id)

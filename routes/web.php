@@ -29,7 +29,8 @@ Route::group(['prefix' => 'kelas'], function () {
     Route::get('/{id}/edit', [KelasController::class, 'edit'])->name('kelas.edit');
     Route::put('/{id}/update', [KelasController::class, 'update'])->name('kelas.update');
     Route::delete('/{id}/delete', [KelasController::class, 'delete'])->name('kelas.delete');
-    Route::get('/kelas/{id}', [KelasController::class, 'index'])->name('kelas.view.detail');
+    Route::get('/{id}/view', [MuridController::class,'viewDetail'])->name('kelas.view.detail');
+    // Route::get('murid/{id}', [MuridController::class,'viewDetail'])->name('kelas.view.detail');
 });
 
 

@@ -8,10 +8,18 @@ use Illuminate\Http\Request;
 
 class MuridController extends Controller
 {
-    public function create()
+        public function create()
+    {
+        $kelas = Kelas::all(); // Ambil semua kelas
+        return view('admin/add_murid', compact('kelas'));
+    }
+
+    public function viewDetail($id)
 {
-    $kelas = Kelas::all(); // Ambil semua kelas
-    return view('admin/add_murid', compact('kelas'));
+    $kelas = Kelas::findOrFail($id);
+    $murid = Murid::where('kelas_id', $id)->get();
+
+    return view('admin.kelas.view', compact('murid', 'kelas'));
 }
 
     public function store(Request $request)

@@ -3,16 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Tambah Murid</h1>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-    <form action="{{ route('kelas.store') }}" method="POST">
+    <form action="{{ route('murid.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="nama">Nama</label>
@@ -33,6 +24,14 @@
         <div class="form-group">
             <label for="tanggal_lahir">Tanggal Lahir</label>
             <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+        </div>
+        <div class="form-group">
+            <label for="kelas_id">Kelas</label>
+            <select class="form-control" id="kelas_id" name="kelas_id" required>
+                @foreach ($kelas as $kls)
+                    <option value="{{ $kls->id }}">{{ $kls->nama_kelas }}</option>
+                @endforeach
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>

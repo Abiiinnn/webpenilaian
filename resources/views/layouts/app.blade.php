@@ -19,15 +19,16 @@
       </header>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{route('layouts')}}" class="nav-link">
             <i class="zmdi zmdi-view-dashboard"></i> Dashboard
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="zmdi zmdi-link"></i> Shortcuts
-          </a>
+            <a href="{{ route('tambah.murid') }}" class="nav-link">
+              <i class="zmdi zmdi-link"></i> Tambah Murid
+            </a>
         </li>
+
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="zmdi zmdi-widgets"></i> Overview

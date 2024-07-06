@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Murid;
+use App\Models\Nilai;
+use App\Models\Mata_Pelajaran;
+
 use Illuminate\Http\Request;
 
 class MuridController extends Controller
@@ -24,9 +27,10 @@ class MuridController extends Controller
 {
     $kelas = Kelas::findOrFail($id);
     $murid = Murid::where('kelas_id', $id)->get();
-
-    return view('admin.kelas.view', compact('murid', 'kelas'));
+   
+    return view('admin.kelas.view', compact('murid', 'kelas', 'mata_pelajaran'));
 }
+
 
     public function store(Request $request)
     {
@@ -49,5 +53,7 @@ class MuridController extends Controller
         $kelas = Kelas::all(); // Ambil semua kelas
         return view('admin.edit', compact('murid', 'kelas')); // Melewatkan $kelas ke view
     }
+
+
 
 }

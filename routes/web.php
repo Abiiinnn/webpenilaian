@@ -34,12 +34,12 @@ Route::group(['prefix' => 'kelas'], function () {
 });
 
 Route::get('/kelas/{id}', [MuridController::class, 'viewDetailmrd'])->name('murid.view.detail');
-
 Route::get('/view/{id}', [MuridController::class,'viewDetail'])->name('kelas.view.detail');
 Route::get('/tambah-murid', [MuridController::class, 'create'])->name('tambah.murid');
 Route::post('/store', [MuridController::class, 'store'])->name('murid.store');
-
 route::get('/admin/siswa',[AdminController::class,'siswa']);
+
+
 Route::get('/logout',[LoginController::class, 'logout']);
 
 

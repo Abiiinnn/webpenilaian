@@ -13,6 +13,9 @@ class kelasSeeder extends Seeder
      */
     public function run(): void
     {
+
+        
+    
         DB::table('kelas')->insert([
             [
                 'nama_kelas' => 'Purnama',

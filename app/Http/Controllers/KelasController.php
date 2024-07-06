@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Murid;
+use App\Models\Nilai;
+use App\Models\Mata_Pelajaran;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -18,7 +20,12 @@ class KelasController extends Controller
     {
         $kelas = Kelas::findOrFail($id);
         $murid = Murid::where('kelas_id', $id)->get();
-        return view('admin.kelas.index', compact('kelas', 'murid'));
+        $kode_mata_pelajaran = Mata_pelajaran::all();
+
+        foreach ($murid as $mrd) {
+            $mrd->nilai = Nilai::where('murid_id', $mrd->id)->where('kelas_id', $id)->get();
+        }
+        return view('admin.kelas.index', compact('kelas', 'murid','kode_mata_pelajaran'));
     }
 
    public function edit($id)

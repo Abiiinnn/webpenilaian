@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Jurusan;
+use App\Models\Murid;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-
+       
+        
         $userData = [
             [
                 'email' => 'Admin@gmail.com',
@@ -38,7 +41,12 @@ class DatabaseSeeder extends Seeder
         }
        
        
-
+       $this->call([
+        kelasSeeder::class,
+        MataPelajaranSeeder::class,
+        MuridSeeder::class,
+        NilaiSeeder::class,
+       ]);
 
         
 

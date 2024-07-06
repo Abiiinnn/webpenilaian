@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mata_pelajaran', function (Blueprint $table) {
-            $table->id() ->primary();
-            $table->string('nama_mata_pelajaran');
-            $table->string('kode_mata_pelajaran');
+        Schema::create('guru', function (Blueprint $table) {
+            $table->id() -> primary();
+            $table->string('nama');
+            $table->string('nip')->unique();
+            $table->enum('kelamin', ['Laki-laki', 'Perempuan']);
+            $table->text('alamat');
+            $table->date('tanggal_lahir');
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('guru');
     }
 };

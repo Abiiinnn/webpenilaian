@@ -14,6 +14,12 @@ class MuridController extends Controller
         return view('admin/add_murid', compact('kelas'));
     }
 
+    public function viewDetailmrd($id)
+    {
+        $murid = Murid::findOrFail($id);
+        return view('admin.kelas.view', compact('murid'));
+    }
+
     public function viewDetail($id)
 {
     $kelas = Kelas::findOrFail($id);

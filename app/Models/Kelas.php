@@ -12,7 +12,7 @@ class kelas extends Model
 
     protected $fillable = [
         'nama_kelas',
-        'wali_kelas',
+        'guru_id',
         'jumlah_siswa',
         'tingkat_kelas',
     ];
@@ -25,5 +25,10 @@ class kelas extends Model
     public function nilai()
     {
         return $this->hasMany(Nilai::class);
+    }
+
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class, 'guru_id'); // 'guru_id' adalah foreign key di tabel 'kelas'
     }
 }

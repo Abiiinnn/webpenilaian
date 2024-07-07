@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
+        
         Schema::create('guru', function (Blueprint $table) {
-            $table->id() -> primary();
+            $table->id()->primary();
             $table->string('nama');
-            $table->string('nip')->unique();
+            $table->string('nip');
             $table->enum('kelamin', ['Laki-laki', 'Perempuan']);
             $table->text('alamat');
             $table->date('tanggal_lahir');
             $table->timestamps();
         });
+        
     }
 
     /**

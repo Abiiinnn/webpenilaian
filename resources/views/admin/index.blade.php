@@ -25,7 +25,7 @@
                 <tr>
                     <td>{{ $kls->id }}</td>
                     <td>{{ $kls->nama_kelas }}</td>
-                    <td>{{ $kls->wali_kelas }}</td>
+                    <td>{{ optional($kls->guru)->nama }}</td>
                     <td>{{ $kls->jumlah_siswa }}</td>
                     <td>{{ $kls->tingkat_kelas }}</td>
                     <td>

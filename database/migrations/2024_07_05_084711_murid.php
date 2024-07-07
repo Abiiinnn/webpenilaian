@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        
+
         Schema::create('murid', function (Blueprint $table) {
             $table->id() -> primary();
             $table->string('nama');
@@ -22,6 +24,7 @@ return new class extends Migration
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('murid');
+        //
     }
 };

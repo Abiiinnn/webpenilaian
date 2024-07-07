@@ -28,9 +28,9 @@ class DatabaseSeeder extends Seeder
             ],  
 
             [
-                'email' => 'siswa1@gmail.com',
-                'name'=>'budi',
-                'role' => 'siswa',
+                'email' => 'guru1@gmail.com',
+                'name'=>'purnama',
+                'role' => 'guru',
                 'password' => bcrypt('1'),
             ]
         ];
@@ -42,9 +42,10 @@ class DatabaseSeeder extends Seeder
        
        
        $this->call([
+        GuruSeeder::class,
         kelasSeeder::class,
-        MataPelajaranSeeder::class,
         MuridSeeder::class,
+        MataPelajaranSeeder::class,
         NilaiSeeder::class,
        ]);
 

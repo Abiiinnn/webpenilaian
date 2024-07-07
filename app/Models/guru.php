@@ -9,6 +9,8 @@ class guru extends Model
 {
     use HasFactory;
 
+    protected $table = 'guru';
+
     protected $fillable = [
         'nama',
         'nip',
@@ -16,4 +18,10 @@ class guru extends Model
         'alamat',
         'tanggal_lahir',
     ];
+
+    public function gurus()
+{
+    return $this->hasMany(Guru::class, 'guru_id');
+}
+    
 }

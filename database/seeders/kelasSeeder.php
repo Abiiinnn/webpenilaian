@@ -19,7 +19,7 @@ class kelasSeeder extends Seeder
         DB::table('kelas')->insert([
             [
                 'nama_kelas' => 'Purnama',
-                'wali_kelas' => 'Pak Purnama',
+                'guru_id' => 1, // Pak Purnama
                 'jumlah_siswa' => 20,
                 'tingkat_kelas' => '1 - A',
                 'created_at' => now(),
@@ -27,7 +27,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Sabit',
-                'wali_kelas' => 'Sabitha Sabrinah',
+                'guru_id' => 2, // Sabitha Sabrinah
                 'jumlah_siswa' => 20,
                 'tingkat_kelas' => '1 - B',
                 'created_at' => now(),
@@ -35,7 +35,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Harimau',
-                'wali_kelas' => 'Pak Hari',
+                'guru_id' => 3, // Pak Hari
                 'jumlah_siswa' => 21,
                 'tingkat_kelas' => '2 - A',
                 'created_at' => now(),
@@ -43,7 +43,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Elang',
-                'wali_kelas' => 'Bu Elina',
+                'guru_id' => 4, // Bu Elina
                 'jumlah_siswa' => 18,
                 'tingkat_kelas' => '2 - B',
                 'created_at' => now(),
@@ -51,7 +51,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Matahari',
-                'wali_kelas' => 'Pak Mata',
+                'guru_id' => 5, // Pak Mata
                 'jumlah_siswa' => 22,
                 'tingkat_kelas' => '3 - A',
                 'created_at' => now(),
@@ -59,7 +59,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Bulan',
-                'wali_kelas' => 'Bu Bulan',
+                'guru_id' => 6, // Bu Bulan
                 'jumlah_siswa' => 19,
                 'tingkat_kelas' => '3 - B',
                 'created_at' => now(),
@@ -67,7 +67,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Angin',
-                'wali_kelas' => 'Pak Angga',
+                'guru_id' => 7, // Pak Angga
                 'jumlah_siswa' => 23,
                 'tingkat_kelas' => '4 - A',
                 'created_at' => now(),
@@ -75,7 +75,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Hujan',
-                'wali_kelas' => 'Bu Hujan',
+                'guru_id' => 8, // Bu Hujan
                 'jumlah_siswa' => 21,
                 'tingkat_kelas' => '4 - B',
                 'created_at' => now(),
@@ -83,7 +83,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Badai',
-                'wali_kelas' => 'Pak Badai',
+                'guru_id' => 9, // Pak Badai
                 'jumlah_siswa' => 20,
                 'tingkat_kelas' => '5 - A',
                 'created_at' => now(),
@@ -91,7 +91,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Pelangi',
-                'wali_kelas' => 'Bu Pelangi',
+                'guru_id' => 10, // Bu Pelangi
                 'jumlah_siswa' => 18,
                 'tingkat_kelas' => '5 - B',
                 'created_at' => now(),
@@ -99,7 +99,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Bintang',
-                'wali_kelas' => 'Pak Bintang',
+                'guru_id' => 11, // Pak Bintang
                 'jumlah_siswa' => 22,
                 'tingkat_kelas' => '6 - A',
                 'created_at' => now(),
@@ -107,7 +107,7 @@ class kelasSeeder extends Seeder
             ],
             [
                 'nama_kelas' => 'Gemilang',
-                'wali_kelas' => 'Bu Gemilang',
+                'guru_id' => 12, // Bu Gemilang
                 'jumlah_siswa' => 21,
                 'tingkat_kelas' => '6 - B',
                 'created_at' => now(),

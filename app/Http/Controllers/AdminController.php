@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 
@@ -8,21 +9,24 @@ class AdminController extends Controller
 {
  
     public function index()
-    {
-        $kelas = Kelas::all();
-        return view('admin.index', compact('kelas'));
-    }
+{
+    $kelas = Kelas::with('guru')->get();
+
+    return view('admin.index', compact('kelas'));
+}
 
     public function create()
-    {
-        return view('admin.create');
+    {   
+        $gurus = Guru::all();
+
+        return view('admin.create', compact('gurus'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nama_kelas' => 'required|string|max:255',
-            'wali_kelas' => 'nullable|string|max:255',
+            'wali_kelas' => 'nullable|exists:guru,id', 
             'jumlah_siswa' => 'required|integer',
             'tingkat_kelas' => 'required|string|max:10',
         ]);

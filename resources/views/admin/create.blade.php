@@ -11,7 +11,12 @@
         </div>
         <div class="form-group">
             <label for="wali_kelas">Wali Kelas</label>
-            <input type="text" class="form-control" id="wali_kelas" name="wali_kelas">
+            <select class="form-control" id="wali_kelas" name="wali_kelas">
+                <option value="">Pilih Wali Kelas</option>
+                @foreach($gurus as $guru)
+                    <option value="{{ $guru->id }}">{{ $guru->nama }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="jumlah_siswa">Jumlah Siswa</label>

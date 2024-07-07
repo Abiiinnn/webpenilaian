@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('name');
            $table->string('password');
-           $table->enum('role',['admin','siswa']) -> default('admin');
+           $table->enum('role',['admin','guru']) -> default('admin');
            $table->timestamps();
         });
 
@@ -35,22 +35,7 @@ return new class extends Migration
             $table->integer('last_activity')->index();
         });
 
-        Schema::create('mahasiswa', function (Blueprint $table){
-            $table->id();
-            $table->integer('NPM');
-            $table->string('Nama');
-            $table->string('Jurusan');
-            $table->timestamps();
-        });
-
-        Schema::create('jurusan', function (Blueprint $table){
-            $table->id();
-            $table->string('namajurusan');
-            $table->string('kodejurusan');
-            
-            $table->timestamps();
-        
-        });
+       
         
     }
 

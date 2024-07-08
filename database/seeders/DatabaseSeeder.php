@@ -19,26 +19,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
        
         
-        $userData = [
-            [
-                'email' => 'Admin@gmail.com',
-                'name'=>'admin',
-                'role' => 'admin',
-                'password' => bcrypt('admin'),
-            ],  
-
-            [
-                'email' => 'guru1@gmail.com',
-                'name'=>'purnama',
-                'role' => 'guru',
-                'password' => bcrypt('1'),
-            ]
-        ];
         
-       
-        foreach($userData as $key => $val){
-            User::create($val);
-        }
        
        
        $this->call([
@@ -47,6 +28,7 @@ class DatabaseSeeder extends Seeder
         MuridSeeder::class,
         MataPelajaranSeeder::class,
         NilaiSeeder::class,
+        UserSeeder::class,
        ]);
 
         

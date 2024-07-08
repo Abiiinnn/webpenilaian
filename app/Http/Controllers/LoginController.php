@@ -7,48 +7,36 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    
-    public function index()
-    {
-        return view('login');
-    }
+   
 
-    function login(Request $request)
+    public function login(Request $request)
     {
         $request->validate([
             'email' => 'required|email', 
             'password' => 'required'
-        ],[
-            'email.required' => 'username wajib isi',
-            'password.required' => 'wajib isi',
+        ], [
+            'email.required' => 'Username wajib diisi.',
+            'password.required' => 'Password wajib diisi.',
         ]);
         
-        $infologin = [
-            'email'=>$request->email,
-            'password'=>$request->password,
-        ];
+        $credentials = $request->only('email', 'password');
 
-        
-
-        if (Auth::attempt($infologin)) {
-            if(Auth::user()->role == 'admin'){
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->role == 'admin') {
                 return redirect()->route('layouts');
-            }else{
-                return redirect('admin/siswa');
+            } else {
+                return redirect()->route('guru.kelas.view');
             }
-
         } else {
-            return redirect()->back()->withErrors('Username atau password salah')->withInput();
+            return redirect()->back()->withErrors('Username atau password salah.')->withInput();
         }
-       
-        
     }
 
-    function logout()
-        {
-            Auth::logout();
-            return redirect('');
-        }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 
 }
 

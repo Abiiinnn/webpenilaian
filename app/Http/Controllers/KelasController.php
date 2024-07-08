@@ -21,7 +21,7 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($id);
         $murid = Murid::where('kelas_id', $id)->get();
         $kode_mata_pelajaran = Mata_pelajaran::all();
-
+        
         foreach ($murid as $mrd) {
             $mrd->nilai = Nilai::where('murid_id', $mrd->id)->where('kelas_id', $id)->get();
         }

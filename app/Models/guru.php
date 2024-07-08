@@ -23,5 +23,8 @@ class guru extends Model
 {
     return $this->hasMany(Guru::class, 'guru_id');
 }
-    
+public function user()
+{
+    return $this->hasOne(User::class);
+}
 }

@@ -1,15 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MuridController;
+use Illuminate\Support\Facades\Auth;
 
-route::get('/',[LoginController::class, 'index']) -> name ('login');
-route::post('/',[LoginController::class, 'login']);
-
-
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/', [AuthController::class, 'login']);
 Route::get('/home',function(){
     return redirect('/admin');
 });
@@ -39,8 +40,14 @@ Route::get('/tambah-murid', [MuridController::class, 'create'])->name('tambah.mu
 Route::post('/store', [MuridController::class, 'store'])->name('murid.store');
 route::get('/admin/siswa',[AdminController::class,'siswa']);
 
+Route::group(['prefix' => 'guru', 'middleware' => 'auth'], function () {
+    Route::get('/kelas/{id}', [GuruController::class, 'viewClass'])->name('guru.kelas.view'); // View class details for guru
+    Route::get('/kelas/{kelasId}/murid/{muridId}/nilai/tambah', [GuruController::class, 'tambahNilai'])->name('guru.tambah.nilai');
+    Route::post('/kelas/{kelasId}/murid/{muridId}/nilai/simpan', [GuruController::class, 'simpanNilai'])->name('guru.simpan.nilai');
+});
+
 
 Route::get('/logout',[LoginController::class, 'logout']);
 
 
-// Route::resource('kelas', AdminController::class);
+

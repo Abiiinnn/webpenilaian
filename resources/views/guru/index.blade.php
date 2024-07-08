@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.dasboard')
 
 @section('content')
+
 <div class="container">
     <h1>Daftar Siswa untuk Kelas {{ $kelas->nama_kelas }}</h1>
-
+    <h2>Selamat Datang di kelas {{ Auth::user()->guru->nama }}</h2>
     <table class="table mt-3">
         <thead>
             <tr>
@@ -12,7 +13,6 @@
                 @foreach ($kode_mata_pelajaran as $mapel)
                     <th>{{ $mapel->kode_mata_pelajaran }}</th>
                 @endforeach
-                <th class="">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -31,16 +31,8 @@
                                 -
                             @endif
                         </td>
+                        
                     @endforeach
-                    <td>
-                        <a href="{{ route('kelas.edit', $mrd->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('kelas.delete', $mrd->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                        </form>
-                        <a href="{{ route('murid.view.detail', $mrd->id) }}" class="btn btn-info btn-sm">Lihat Siswa</a>
-                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -38,14 +38,15 @@ class AdminController extends Controller
     public function edit($id)
     {
         $kelas = Kelas::findOrFail($id);
-        return view('admin.edit', compact('kelas'));
+        $gurus = Guru::all();
+        return view('admin.edit', compact('kelas','gurus'));
     }
 
-    public function update(Request $request, $id)
+        public function update(Request $request, $id)
     {
         $request->validate([
             'nama_kelas' => 'required|string',
-            'wali_kelas' => 'required|string',
+            'wali_kelas' => 'required|exists:guru,id', // Pastikan wali_kelas adalah id yang valid dari tabel guru
             'jumlah_siswa' => 'required|numeric',
             'tingkat_kelas' => 'required|string',
         ]);
@@ -54,7 +55,7 @@ class AdminController extends Controller
             $kelas = Kelas::find($id);
             if ($kelas) {
                 $kelas->nama_kelas = $request->nama_kelas;
-                $kelas->wali_kelas = $request->wali_kelas;
+                $kelas->guru_id = $request->wali_kelas; // Menggunakan id dari guru yang dipilih
                 $kelas->jumlah_siswa = $request->jumlah_siswa;
                 $kelas->tingkat_kelas = $request->tingkat_kelas;
                 $kelas->save();
@@ -63,10 +64,11 @@ class AdminController extends Controller
             }
             return redirect()->route('layouts')->with('fail', 'Kelas not found.');
         } catch (\Exception $e) {
-            return redirect('kelas.edit'.$id)->with('fail', $e->getMessage());
+            return redirect()->route('admin.edit', $id)->with('fail', $e->getMessage());
         }
     }
-    public function delete($id)
+
+        public function delete($id)
     {
         try {
             $kelas = Kelas::find($id);

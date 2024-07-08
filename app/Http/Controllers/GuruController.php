@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\guru;
 use App\Models\Kelas;
 use App\Models\Murid;
@@ -9,6 +10,7 @@ use App\Models\Nilai;
 use Illuminate\Http\Request;
 use App\Models\Mata_Pelajaran;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class GuruController extends Controller
 {
@@ -50,26 +52,44 @@ class GuruController extends Controller
         $kelas = Kelas::findOrFail($kelasId);
         $murid = Murid::findOrFail($muridId);
         $mataPelajaran = Mata_Pelajaran::all(); // Ambil semua mata pelajaran
-
+    
         return view('guru.tambahnilai', compact('kelas', 'murid', 'mataPelajaran'));
     }
 
-    public function simpanNilai(Request $request, $kelasId, $muridId)
-    {
-        $request->validate([
-            'mata_pelajaran_id' => 'required|exists:mata_pelajarans,id',
-            'nilai' => 'required|numeric|min:0|max:100',
+    
+
+public function simpanNilai(Request $request, $kelasId, $muridId)
+{
+    Log::info('Masuk ke method simpanNilai');
+    
+    $request->validate([
+        'mata_pelajaran_id' => 'required|exists:mata_pelajaran,id',
+        'nilai' => 'required|numeric|min:0|max:100',
+    ]);
+
+    Log::info('Data request:', $request->all());
+
+    try {
+        // Cari nilai yang sudah ada untuk murid dan mata pelajaran tersebut
+        $nilai = Nilai::firstOrNew([
+            'kelas_id' => $kelasId,
+            'murid_id' => $muridId,
+            'mata_pelajaran_id' => $request->mata_pelajaran_id,
         ]);
 
-        $nilai = new Nilai();
-        $nilai->kelas_id = $kelasId;
-        $nilai->murid_id = $muridId;
-        $nilai->mata_pelajaran_id = $request->mata_pelajaran_id;
+        Log::info('Nilai sebelum update:', $nilai->toArray());
+
         $nilai->nilai = $request->nilai;
         $nilai->save();
 
+        Log::info('Nilai setelah update:', $nilai->toArray());
+
         return redirect()->route('guru.kelas.view', ['id' => $kelasId])
-                         ->with('success', 'Nilai berhasil ditambahkan.');
+                        ->with('success', 'Nilai berhasil ditambahkan.');
+    } catch (\Exception $e) {
+        Log::error('Error saat menyimpan nilai: ' . $e->getMessage());
+        return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan nilai.');
     }
+}
 
 }

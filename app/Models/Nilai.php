@@ -12,6 +12,9 @@ class Nilai extends Model
     protected $table = 'nilai';
 
     protected $fillable = [
+        'kelas_id',
+        'murid_id',
+        'mata_pelajaran_id',
         'nilai',
     ];
 
@@ -22,7 +25,7 @@ class Nilai extends Model
 
     public function mataPelajaran()
     {
-        return $this->belongsTo(Mata_Pelajaran::class);
+        return $this->belongsTo(Mata_Pelajaran::class,'mata_pelajaran_id');
     }
 
     public function kelas()

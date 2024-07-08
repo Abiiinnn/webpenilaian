@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+
     <!-- Add any additional stylesheets or scripts here -->
 </head>
 <body>
@@ -22,11 +25,7 @@
             <div class="col-12 d-flex justify-content-center">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav align-items-center mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" href="{{ route('guru.tambah.nilai', ['kelasId' => $kelas->id, 'muridId' => $murid->first()->id]) }}">
-                                <i class="fas fa-plus-circle pe-2"></i>Tambah Nilai
-                            </a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link mx-2" href="/logout">
                                 <i class="fas fa-bell pe-2"></i>Logout
@@ -57,6 +56,7 @@
         @yield('content')
     </div>
 </div>
-<!-- Add any additional scripts here -->
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </html>

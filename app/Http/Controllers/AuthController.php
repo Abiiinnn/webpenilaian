@@ -27,7 +27,7 @@ class AuthController extends Controller
             $user = Auth::user();
             
             if ($user->role == 'admin') {
-                return redirect()->route('admin.index');
+                return redirect()->route('layouts');
             } elseif ($user->role == 'guru') {
                 $guru = Guru::find($user->guru_id);
                 $kelas = Kelas::where('guru_id', $guru->id)->first();
